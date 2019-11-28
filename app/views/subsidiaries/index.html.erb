@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>CNPJ</th>
+    <th>Endereço</th>
+  </tr>
+  <tr>
+    <% @subsidiaries.each do |sub| %>
+      <td><%= sub.name %></td>
+      <td><%= sub.cnpj %></td>
+      <td><%= sub.address %></td>
+    <% end %>
+  </tr>
+</table>
+
+<%= link_to 'Voltar', subsidiaries_path %>
