@@ -12,11 +12,12 @@ feature 'Administrator view subsidiaries' do
     visit root_path
     click_on 'Filiais'
     
-    Subsidiary.all.each do |sub|
-      expect(page).to have_content(sub.name)
-      expect(page).to have_content(sub.cnpj)
-      expect(page).to have_content(sub.address)
-    end
+    expect(page).to have_content('Paulista')
+    expect(page).to have_content('03.518.732/0001-66')
+    expect(page).to have_content('Avenida Paulista, 1234')
+    expect(page).to have_content('Tatuape')
+    expect(page).to have_content('04.566.744/0001-09')
+    expect(page).to have_content('Avenida Alcântra Machado, 4321')
     expect(page).to have_link('Voltar')
   end
 end

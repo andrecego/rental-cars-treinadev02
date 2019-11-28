@@ -1,0 +1,19 @@
+<h1>Categorias de carro</h1>
+<table>
+    <tr>
+      <th>Nome</th>
+      <th>Taxa Diária</th>
+      <th>Seguro do carro</th>
+      <th>Seguro contra terceiros</th>
+    </tr>
+    <tr>
+      <% @car_categories.each do |cat| %>
+        <td><%= cat.name %></td>
+        <td><%= number_to_currency(cat.daily_rate) %></td>
+        <td><%= number_to_currency(cat.car_insurance) %></td>
+        <td><%= number_to_currency(cat.third_party_insurance) %></td>
+      <% end %>
+    </tr>
+  </table>
+  
+  <%= link_to 'Voltar', root_path %>
