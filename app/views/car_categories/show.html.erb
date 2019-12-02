@@ -1,0 +1,8 @@
+<h3>Categoria</h3>
+<ul>
+  <li>Tipo: <%= @car_category.name %></li>
+  <li>Diária: <%= number_to_currency(@car_category.daily_rate) %></li>
+  <li>Seguro do carro: <%= number_to_currency(@car_category.car_insurance) %></li>
+  <li>Seguro contra terceiros: <%= number_to_currency(@car_category.third_party_insurance) %></li>
+</ul>
+<%= link_to  "Voltar", car_categories_path %>

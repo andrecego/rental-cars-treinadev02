@@ -3,13 +3,13 @@ require 'rails_helper'
 feature 'Administrator view all categories' do
   scenario 'successfully' do
     CarCategory.create!(name: 'B', 
-                      daily_rate: '70.00', 
-                      car_insurance: '500.00',
-                      third_party_insurance: '200.00')
+                        daily_rate: '70.00', 
+                        car_insurance: '500.00',
+                        third_party_insurance: '200.00')
     CarCategory.create!(name: 'A', 
-                      daily_rate: '62.00', 
-                      car_insurance: '323.22',
-                      third_party_insurance: '99.99')
+                        daily_rate: '62.00', 
+                        car_insurance: '323.22',
+                        third_party_insurance: '99.99')
 
     visit root_path
     click_on 'Categorias'
