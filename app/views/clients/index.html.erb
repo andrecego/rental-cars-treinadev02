@@ -1,0 +1,14 @@
+<h1>Lista de clientes</h1>
+<p>
+  <%= link_to  'Registrar novo cliente', new_client_path %>
+  <%= link_to  "Voltar", root_path %>
+</p>
+<% if @clients.empty? %>
+  <p>Não existe nenhum cliente registrado</p>
+<% else %>
+  <ul>
+    <% @clients.each do |client| %>
+      <li><%= link_to  client.name, client_path(client) %></li>
+    <% end %>
+  </ul>
+<% end %>
