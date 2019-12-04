@@ -1,0 +1,10 @@
+<h3>Modelo <%= @car_model %></h3>
+<ul>
+  <li>Nome: <%= @car_model.name %></li>
+  <li>Ano: <%= @car_model.year %></li>
+  <li>Fabricante: <%= @car_model.manufacturer.name %></li>
+  <li>Motorização: <%= @car_model.motorization %></li>
+  <li>Categoria: <%= @car_model.car_category.name %></li>
+  <li>Combusível: <%= @car_model.fuel_type %></li>
+</ul>
+<%= link_to  'Voltar', car_models_path %>
