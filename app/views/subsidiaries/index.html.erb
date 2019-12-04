@@ -1,17 +1,26 @@
 <h1>Filiais</h1>
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>CNPJ</th>
-    <th>Endereço</th>
-  </tr>
-  <tr>
-    <% @subsidiaries.each do |sub| %>
-      <td><%= sub.name %></td>
-      <td><%= sub.cnpj %></td>
-      <td><%= sub.address %></td>
-    <% end %>
-  </tr>
-</table>
+<p>
+  <%= link_to  "Registrar nova filial", new_subsidiary_path %>
+  <%= link_to 'Voltar', root_path %>
+</p>
 
-<%= link_to 'Voltar', root_path %>
+<% if @subsidiaries.empty? %>
+  <p>Nenhuma filial cadastrada</p>
+<% else %>
+  <table>
+    <thead>
+      <th>Nome</th>
+      <th>CNPJ</th>
+      <th>Endereço</th>
+    </thead>
+    <tbody>
+      <% @subsidiaries.each do |sub| %>
+        <td><%= sub.name %></td>
+        <td><%= sub.cnpj %></td>
+        <td><%= sub.address %></td>
+        <td><%= link_to 'Editar', edit_subsidiary_path(sub) %></td>
+        <td><%= link_to 'Deletar', subsidiary_path(sub), method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

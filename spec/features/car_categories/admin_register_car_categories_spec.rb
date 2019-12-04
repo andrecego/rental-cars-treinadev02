@@ -13,9 +13,9 @@ feature 'Administrator register new car category' do
     click_on 'Enviar'
 
     expect(page).to have_content('B')
-    expect(page).to have_content('70.00')
-    expect(page).to have_content('250.51')
-    expect(page).to have_content('99.90')
+    expect(page).to have_content('70,00')
+    expect(page).to have_content('250,51')
+    expect(page).to have_content('99,90')
     expect(page).to have_link('Voltar')
   end
 end

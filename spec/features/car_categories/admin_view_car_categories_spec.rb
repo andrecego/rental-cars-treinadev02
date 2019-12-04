@@ -16,14 +16,21 @@ feature 'Administrator view all categories' do
     
 
     expect(page).to have_content('B')
-    expect(page).to have_content('70.00')
-    expect(page).to have_content('500.00')
-    expect(page).to have_content('200.00')
+    expect(page).to have_content('70,00')
+    expect(page).to have_content('500,00')
+    expect(page).to have_content('200,00')
     expect(page).to have_content('A')
-    expect(page).to have_content('62.00')
-    expect(page).to have_content('323.22')
-    expect(page).to have_content('99.99')
+    expect(page).to have_content('62,00')
+    expect(page).to have_content('323,22')
+    expect(page).to have_content('99,99')
 
     expect(page).to have_link('Voltar')
+  end
+
+  scenario 'and didnt have a car_category' do
+    visit car_categories_path
+
+    expect(page).to have_content('Não existe nenhuma categoria de carro cadastrada')
+    expect(page).to_not have_css('table') 
   end
 end

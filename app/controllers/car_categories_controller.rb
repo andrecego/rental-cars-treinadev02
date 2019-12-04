@@ -14,10 +14,10 @@ class CarCategoriesController < ApplicationController
   def create
     @car_category = CarCategory.new(car_category_params)
     if @car_category.save
-      flash[:success] = "Categoria criada com êxito"
+      flash[:notice] = 'Categoria criada com êxito'
       redirect_to @car_category
     else
-      flash[:error] = "Algo deu errado"
+      flash[:alert] = 'Algo deu errado'
       render :new
     end
   end
@@ -25,6 +25,22 @@ class CarCategoriesController < ApplicationController
   def show
     @car_category = CarCategory.find(params[:id])
   end
+
+  def edit
+    @car_category = CarCategory.find(params[:id])
+  end
+  
+  def update
+    @car_category = CarCategory.find(params[:id])
+      if @car_category.update_attributes(car_category_params)
+        flash[:notice] = 'Categoria atualizada com sucesso'
+        redirect_to @car_category
+      else
+        flash[:alert] = 'Algo deu errado'
+        render 'edit'
+      end
+  end
+  
     
   private
   def car_category_params

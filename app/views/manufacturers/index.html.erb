@@ -2,11 +2,12 @@
 <%= link_to "Registrar novo fabricante", new_manufacturer_path %>
 <% if @manufacturers.empty? %>
   <p>Não existem filiais cadastradas</p>
+<% else %>
+  <ul>
+    <li>
+      <% @manufacturers.each do |manufacturer| %>
+        <%= link_to manufacturer.name, manufacturer_path(manufacturer.id) %>
+      <% end %>
+    </li>
+  </ul>
 <% end %>
-<ul>
-  <li>
-    <% @manufacturers.each do |manufacturer| %>
-      <%= link_to manufacturer.name, manufacturer_path(manufacturer.id) %>
-    <% end %>
-  </li>
-</ul>

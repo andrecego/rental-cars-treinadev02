@@ -1,20 +1,26 @@
 <h1>Categorias de carro</h1>
-<%= link_to  "Cadastrar nova categoria", new_car_category_path %>
-<table>
-    <tr>
+<p>
+  <%= link_to  "Cadastrar nova categoria", new_car_category_path %>
+  <%= link_to 'Voltar', root_path %>
+</p>
+<% if @car_categories.empty? %>
+  <p>Não existe nenhuma categoria de carro cadastrada</p>
+<% else %>
+  <table>
+    <thead>
       <th>Nome</th>
       <th>Taxa Diária</th>
       <th>Seguro do carro</th>
       <th>Seguro contra terceiros</th>
-    </tr>
-    <tr>
-      <% @car_categories.each do |cat| %>
-        <td><%= cat.name %></td>
-        <td><%= number_to_currency(cat.daily_rate) %></td>
-        <td><%= number_to_currency(cat.car_insurance) %></td>
-        <td><%= number_to_currency(cat.third_party_insurance) %></td>
+    </thead>
+    <tbody>
+      <% @car_categories.each do |category| %>
+        <td><%= category.name %></td>
+        <td><%= number_to_real(category.daily_rate) %></td>
+        <td><%= number_to_real(category.car_insurance) %></td>
+        <td><%= number_to_real(category.third_party_insurance) %></td>
+        <td><%= link_to  "Editar", edit_car_category_path(category) %></td>
       <% end %>
-    </tr>
+    </tbody>
   </table>
-  
-  <%= link_to 'Voltar', root_path %>
+<% end %>
