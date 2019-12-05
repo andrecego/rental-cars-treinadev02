@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2019_12_05_165313) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "car_models", force: :cascade do |t|
+    t.string "name"
+    t.integer "year"
+    t.string "motorization"
+    t.string "fuel_type"
+    t.integer "manufacturer_id"
+    t.integer "car_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_category_id"], name: "index_car_models_on_car_category_id"
+    t.index ["manufacturer_id"], name: "index_car_models_on_manufacturer_id"
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "document"
@@ -33,6 +46,17 @@ ActiveRecord::Schema.define(version: 2019_12_05_165313) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "client_id"
+    t.integer "car_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_category_id"], name: "index_rentals_on_car_category_id"
+    t.index ["client_id"], name: "index_rentals_on_client_id"
   end
 
   create_table "subsidiaries", force: :cascade do |t|
