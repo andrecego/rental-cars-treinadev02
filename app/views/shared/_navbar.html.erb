@@ -1,0 +1,13 @@
+<div class="login">
+  <% if user_signed_in? %>
+    <p>
+      <%= link_to  current_user.email, edit_user_registration_path %> |
+      <%= link_to  "Sair", destroy_user_session_path %>
+    </p>  
+  <% else %>
+    <p>
+      <%= link_to  "Registre-se", new_user_registration_path %> |
+      <%= link_to  "Entrar", new_user_session_path %>
+    </p>  
+  <% end %>
+</div>
