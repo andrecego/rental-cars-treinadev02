@@ -16,6 +16,8 @@ class CarModelsController < ApplicationController
       redirect_to @car_model
     else
       flash[:alert] = 'Algo deu errado'
+      @manufacturers = Manufacturer.all
+      @car_categories = CarCategory.all
       render :new
     end
   end

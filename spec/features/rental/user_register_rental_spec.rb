@@ -10,15 +10,16 @@ feature 'User register new rental' do
     visit root_path
     click_on 'Locação'
     click_on 'Cadastrar nova locação'
-    fill_in 'Ínicio', with: '2019'
-    fill_in 'Final', with: '2020'
+    fill_in 'Ínicio', with: '2019/12/12'
+    fill_in 'Final', with: '2019/12/19'
     select 'Yan', from: 'Cliente'
     select 'C', from: 'Categoria'
+    click_on 'Enviar'
 
     expect(page).to have_content('Locação cadastrada com sucesso')
     expect(page).to have_content('Nome do cliente: Yan')
-    expect(page).to have_content('Ínicio: 2019')
-    expect(page).to have_content('Final: 2020')
+    expect(page).to have_content('Ínicio: 2019-12-12')
+    expect(page).to have_content('Final: 2019-12-19')
     expect(page).to have_content('Categoria: C')
   end
 end

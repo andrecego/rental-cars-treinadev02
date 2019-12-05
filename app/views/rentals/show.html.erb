@@ -1,0 +1,11 @@
+<h3>Locaçao para <%= @rental.client.uniq_name %></h3>
+<dl>
+  <dt>Nome do cliente:</dt>
+  <dd><%= @rental.client.name %></dd>
+  <dt>Ínicio: </dt>
+  <dd><%= @rental.start_date %></dd>
+  <dt>Final: </dt>
+  <dd><%= @rental.end_date %></dd>
+  <dt>Categoria: </dt>
+  <dd><%= @rental.car_category.name %></dd>
+</dl>
