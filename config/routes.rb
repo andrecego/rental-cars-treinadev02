@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :subsidiaries
   resources :car_categories
   resources :clients
+  resources :cars, only:[:index, :new, :create]  
 end
