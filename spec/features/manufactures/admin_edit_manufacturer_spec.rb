@@ -44,4 +44,21 @@ feature 'Admin edit manufacturer' do
 
     expect(page).to have_content('Nome já está em uso') 
   end
+
+  scenario 'and isnt logged in' do
+    fiat = Manufacturer.create!(name: 'Fiat')
+
+    visit edit_manufacturer_path(fiat)
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    fiat = Manufacturer.create!(name: 'Fiat')
+
+    user_login
+    visit edit_manufacturer_path(fiat)
+    
+    expect(page).to have_content('Você não tem essa permissão')
+  end
 end

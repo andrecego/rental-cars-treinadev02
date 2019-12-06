@@ -26,4 +26,22 @@ feature 'Admin view manufacturers' do
 
     expect(current_path).to eq root_path
   end
+
+  scenario 'and isnt logged in' do
+    Manufacturer.create!(name: 'Fiat')
+
+    visit manufacturers_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    Manufacturer.create!(name: 'Fiat')
+
+    user_login
+    visit manufacturers_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
+    expect(page).to_not have_content('Fiat')
+  end
 end
