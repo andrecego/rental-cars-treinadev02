@@ -1,2 +1,30 @@
 <h3>Listagem de carros</h3>
 <%= link_to  'Cadastrar novo carro', new_car_path %>
+<%= link_to  'Voltar', root_path %>
+
+<% if @cars.empty?  %>
+  <p>Nenhum carro cadastrado</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>Cor</th>
+        <th>Ano</th>
+        <th>Placa</th>
+        <th>Filial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cars.each do |car| %>
+        <tr>
+          <td><%= car.car_model.name %></td>
+          <td><%= car.color %></td>
+          <td><%= car.car_model.year %></td>
+          <td><%= car.license_plate %></td>
+          <td><%= car.subsidiary.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-xfeature 'Admin view cars' do
+feature 'Admin view cars' do
   scenario 'successfully' do
     visit root_path
     click_on 'Carros'
@@ -22,17 +22,17 @@ xfeature 'Admin view cars' do
     visit cars_path
 
     expect(page).to have_css('td', text: 'Fit')
-    expect(page).to have_css('td', text: '2015')
     expect(page).to have_css('td', text: 'Azul')
+    expect(page).to have_css('td', text: '2015')
     expect(page).to have_css('td', text: 'ABC-1234')
     expect(page).to have_css('td', text: 'Paulista')
-    expect(page).to_not have_content('Nenhum modelo cadastrado')
+    expect(page).to_not have_content('Nenhum carro cadastrado')
   end
 
   scenario 'and dont have any registered models' do
-    visit car_models_path
+    visit cars_path
 
-    expect(page).to have_content('Nenhum modelo cadastrado')
+    expect(page).to have_content('Nenhum carro cadastrado')
     expect(page).to_not have_css('table')
   end
 end

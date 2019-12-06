@@ -14,7 +14,7 @@ feature 'Admin deleted subsidiary' do
     expect(page).to_not have_content('Avenida que sobe, 768')
   end
   
-  xscenario 'and has some cars attached to it' do
+  scenario 'and has cars attached to it' do
     honda = Manufacturer.create!(name: 'Honda')
     category = CarCategory.create!(name: 'A', daily_rate: '100', car_insurance: '50',
                                    third_party_insurance: '30')
@@ -27,7 +27,8 @@ feature 'Admin deleted subsidiary' do
     visit root_path
     click_on 'Filiais'
     click_on 'Deletar'
-    byebug
-    expect(page).to have_content('Filial apagada com sucesso') 
+
+    expect(page).to have_content('Algo deu errado')
+    #expect(page).to have_content('Ainda tem carros nessa filial')
   end
 end
