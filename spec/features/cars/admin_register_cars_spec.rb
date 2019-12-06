@@ -74,4 +74,23 @@ feature 'Admin register new car' do
 
     expect(page).to have_content('Placa já cadastrada')
   end
+
+  scenario 'and plate is in the wrong format' do
+    honda = Manufacturer.create!(name: 'Honda')
+    category = CarCategory.create!(name: 'A', daily_rate: '100', car_insurance: '50',
+                                   third_party_insurance: '30')
+    CarModel.create!(name: 'Fit', year: '2015', motorization: '1.5', fuel_type: 'flex',
+                     car_category_id: category.id, manufacturer_id: honda.id)
+    Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
+
+    visit new_car_path
+    fill_in 'Placa', with: 'ABC1234'
+    fill_in 'Cor', with: 'Azul'
+    select 'Fit', from: 'Modelo'
+    fill_in 'Quilometragem', with: '10000'
+    select 'Paulista', from: 'Filial'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Placa no formato errado')
+  end
 end
