@@ -26,6 +26,5 @@ feature 'Admin view car models' do
     visit car_models_path
 
     expect(page).to have_content('Nenhum modelo cadastrado')
-    expect(page).to_not have_css('ul')
   end
 end

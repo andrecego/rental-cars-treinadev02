@@ -1,4 +1,4 @@
-<ul>
+<ul style="display:inline-block">
   <li><%= link_to 'Fabricantes',  manufacturers_path %></li>
   <li><%= link_to 'Filiais', subsidiaries_path %></li>
   <li><%= link_to 'Categorias', car_categories_path %></li>
@@ -12,7 +12,7 @@
   <% if user_signed_in? %>
     <p>
       <%= link_to  current_user.email, edit_user_registration_path %> |
-      <%= link_to  "Sair", destroy_user_session_path %>
+      <%= link_to  "Sair", destroy_user_session_path, method: :delete %>
     </p>  
   <% else %>
     <p>
