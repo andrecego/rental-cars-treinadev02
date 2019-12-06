@@ -67,3 +67,8 @@ def user_login
   user = User.create!(email: 'test@test.com', password: '123456')
   login_as(user)
 end
+
+def admin_login
+  admin = User.create!(email: 'test@test.com', password: '123456', role: :admin)
+  login_as(admin)
+end

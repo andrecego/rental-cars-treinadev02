@@ -5,7 +5,7 @@ feature 'Admin view manufacturers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
-    user_login
+    admin_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -18,7 +18,7 @@ feature 'Admin view manufacturers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
-    user_login
+    admin_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
