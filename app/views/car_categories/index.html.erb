@@ -15,11 +15,13 @@
     </thead>
     <tbody>
       <% @car_categories.each do |category| %>
-        <td><%= category.name %></td>
-        <td><%= number_to_real(category.daily_rate) %></td>
-        <td><%= number_to_real(category.car_insurance) %></td>
-        <td><%= number_to_real(category.third_party_insurance) %></td>
-        <td><%= link_to  "Editar", edit_car_category_path(category) %></td>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= number_to_real(category.daily_rate) %></td>
+          <td><%= number_to_real(category.car_insurance) %></td>
+          <td><%= number_to_real(category.third_party_insurance) %></td>
+          <td><%= link_to  "Editar", edit_car_category_path(category) %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
