@@ -1,13 +1,8 @@
 require 'rails_helper'
 
-def login
-  user = User.create!(email: 'test@test.com', password: '123456')
-  login_as(user)
-end
-
 feature 'User register new client' do
   scenario 'successfully' do
-    login
+    user_login
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
@@ -24,7 +19,7 @@ feature 'User register new client' do
   end
 
   scenario 'and must fill in all fields' do
-    login
+    user_login
     visit new_client_path
     fill_in 'Nome', with: ''
     click_on 'Enviar'
@@ -33,7 +28,7 @@ feature 'User register new client' do
   end
 
   scenario 'CPF must be in a valid format' do
-    login
+    user_login
     visit new_client_path
     fill_in 'Nome', with: 'José'
     fill_in 'CPF', with: '123.456.789/00'
@@ -46,7 +41,7 @@ feature 'User register new client' do
   scenario 'CPF must be unique' do
     Client.create!(name: 'Carlos', document: '123.456.789-00', email: 'carlos@email.com')
 
-    login
+    user_login
     visit new_client_path
     fill_in 'Nome', with: 'José'
     fill_in 'CPF', with: '123.456.789-00'

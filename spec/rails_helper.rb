@@ -63,3 +63,7 @@ RSpec.configure do |config|
 end
 
 include Warden::Test::Helpers
+def user_login
+  user = User.create!(email: 'test@test.com', password: '123456')
+  login_as(user)
+end

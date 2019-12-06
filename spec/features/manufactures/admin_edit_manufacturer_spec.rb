@@ -1,9 +1,10 @@
 require  'rails_helper'
 
 feature 'Admin edit manufacturer' do 
-  scenario 'successfully' do
-  
+  scenario 'successfully' do  
     Manufacturer.create!(name: 'Ford')
+
+    user_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Ford'
@@ -16,14 +17,14 @@ feature 'Admin edit manufacturer' do
   end
 
   scenario 'and there is no manufacturer' do
-
+    user_login
     visit manufacturers_path
 
     expect(page).to have_content('Não existem filiais cadastradas') 
   end
 
   scenario 'and must fill in all fields' do
-
+    user_login
     honda = Manufacturer.create!(name: 'Honda') 
     visit edit_manufacturer_path(honda)
     fill_in 'Nome', with: ''
@@ -33,10 +34,10 @@ feature 'Admin edit manufacturer' do
   end
 
   scenario 'and tried to fill in with the same name' do
-    
     Manufacturer.create!(name: 'Honda')
     fiat = Manufacturer.create!(name: 'Fiat')
 
+    user_login
     visit edit_manufacturer_path(fiat)
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'

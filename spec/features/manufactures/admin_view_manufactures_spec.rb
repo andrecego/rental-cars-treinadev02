@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-feature 'Visitor view manufacturers' do
+feature 'Admin view manufacturers' do
   scenario 'successfully' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
+    user_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -17,6 +18,7 @@ feature 'Visitor view manufacturers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
+    user_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'

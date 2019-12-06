@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
+    user_login
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -13,6 +14,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
+    user_login
     visit new_manufacturer_path
     click_on 'Enviar'
 
@@ -22,6 +24,7 @@ feature 'Admin register manufacturer' do
   scenario 'and tried to fill in with the same name' do
     Manufacturer.create!(name: 'Honda')
 
+    user_login
     visit new_manufacturer_path
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'

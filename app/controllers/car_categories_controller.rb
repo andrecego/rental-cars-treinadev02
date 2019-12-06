@@ -3,10 +3,6 @@ class CarCategoriesController < ApplicationController
     @car_categories = CarCategory.all
   end
 
-  def show
-    @car_category = CarCategory.find(params[:id])
-  end
-
   def new
     @car_category = CarCategory.new
   end
