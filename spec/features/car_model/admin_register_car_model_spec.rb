@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register new car model' do
   scenario 'successfully' do
+    admin_login
     Manufacturer.create!(name: 'Ford')
     Manufacturer.create!(name: 'Honda')
     CarCategory.create!(name: 'A', daily_rate: '100', car_insurance: '50',
@@ -27,5 +28,18 @@ feature 'Admin register new car model' do
     expect(page).to have_content('Honda')
     expect(page).to have_content('A')
     expect(page).to have_content('Modelo de carro criado com sucesso')
+  end
+
+  scenario 'and isnt logged in' do
+    visit new_car_model_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit new_car_model_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end

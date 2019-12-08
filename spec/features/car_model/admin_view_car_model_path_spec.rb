@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin view car models' do
   scenario 'successfully' do
+    admin_login
     visit root_path
     click_on 'Modelos de carro'
 
@@ -16,6 +17,7 @@ feature 'Admin view car models' do
     model = CarModel.create!(name: 'Fit', year: '2015', motorization: '1.5', fuel_type: 'flex',
                              car_category_id: category.id, manufacturer_id: honda.id)
 
+    admin_login
     visit car_models_path
 
     expect(page).to have_link('Fit')
@@ -23,8 +25,22 @@ feature 'Admin view car models' do
   end
 
   scenario 'and dont have any registered models' do
+    admin_login
     visit car_models_path
 
     expect(page).to have_content('Nenhum modelo cadastrado')
+  end
+
+  scenario 'and isnt logged in' do
+    visit car_models_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit car_models_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end
