@@ -11,9 +11,9 @@ feature 'Administrator view all categories' do
                         car_insurance: '323.22',
                         third_party_insurance: '99.99')
 
+    admin_login
     visit root_path
-    click_on 'Categorias'
-    
+    click_on 'Categorias'    
 
     expect(page).to have_content('B')
     expect(page).to have_content('70,00')
@@ -28,9 +28,23 @@ feature 'Administrator view all categories' do
   end
 
   scenario 'and didnt have a car_category' do
+    admin_login
     visit car_categories_path
 
     expect(page).to have_content('Não existe nenhuma categoria de carro cadastrada')
     expect(page).to_not have_css('table') 
+  end
+
+  scenario 'and isnt logged in' do
+    visit car_categories_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit car_categories_path
+
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Administrator register new car category' do
   scenario 'successfully' do
-
+    admin_login
     visit root_path
     click_on 'Categorias'
     click_on 'Cadastrar nova categoria'    
@@ -17,5 +17,18 @@ feature 'Administrator register new car category' do
     expect(page).to have_content('250,51')
     expect(page).to have_content('99,90')
     expect(page).to have_link('Voltar')
+  end
+
+  scenario 'and isnt logged in' do
+    visit new_car_category_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit new_car_category_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end
