@@ -43,11 +43,4 @@ class ManufacturersController < ApplicationController
   def manufacturer_params
     params.require(:manufacturer).permit(:name)
   end
-
-  def authenticate_admin
-    unless current_user.admin?
-      flash[:notice] = 'Você não tem essa permissão'      
-      redirect_to root_path
-    end
-  end
 end

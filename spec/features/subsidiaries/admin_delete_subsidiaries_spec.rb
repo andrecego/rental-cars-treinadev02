@@ -4,6 +4,7 @@ feature 'Admin deleted subsidiary' do
   scenario 'successfully' do
     Subsidiary.create!(name: 'Locars', cnpj: '00.123.456/0001-09', address: 'Avenida que sobe, 768')
     
+    admin_login
     visit root_path
     click_on 'Filiais'
     click_on 'Deletar'
@@ -23,12 +24,26 @@ feature 'Admin deleted subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
     Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model_id: model.id, mileage: 100000,
                 subsidiary_id: subsidiary.id)
-
+     
+    admin_login
     visit root_path
     click_on 'Filiais'
     click_on 'Deletar'
 
     expect(page).to have_content('Algo deu errado')
     #expect(page).to have_content('Ainda tem carros nessa filial')
+  end
+
+  scenario 'and isnt logged in' do
+    visit new_manufacturer_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
+  scenario 'and isnt admin' do
+    user_login
+    visit new_manufacturer_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end
