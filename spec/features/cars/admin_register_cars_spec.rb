@@ -9,6 +9,7 @@ feature 'Admin register new car' do
                      car_category_id: category.id, manufacturer_id: honda.id)
     Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
 
+    admin_login
     visit root_path
     click_on 'Carros'
     click_on 'Cadastrar novo carro'
@@ -28,6 +29,7 @@ feature 'Admin register new car' do
   end
 
   scenario 'and must fill in all fields' do
+    admin_login
     visit new_car_path
     fill_in 'Placa', with: ''
     click_on 'Enviar'
@@ -43,6 +45,7 @@ feature 'Admin register new car' do
                      car_category_id: category.id, manufacturer_id: honda.id)
     Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
 
+    admin_login
     visit new_car_path
     fill_in 'Placa', with: 'ABC-1234'
     fill_in 'Cor', with: 'Azul'
@@ -64,6 +67,7 @@ feature 'Admin register new car' do
     Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model_id: model.id, mileage: 100000,
                 subsidiary_id: subsidiary.id)
 
+    admin_login
     visit new_car_path
     fill_in 'Placa', with: 'ABC-1234'
     fill_in 'Cor', with: 'Verde'
@@ -83,6 +87,7 @@ feature 'Admin register new car' do
                      car_category_id: category.id, manufacturer_id: honda.id)
     Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
 
+    admin_login
     visit new_car_path
     fill_in 'Placa', with: 'ABC1234'
     fill_in 'Cor', with: 'Azul'
@@ -92,5 +97,18 @@ feature 'Admin register new car' do
     click_on 'Enviar'
 
     expect(page).to have_content('Placa no formato errado')
+  end
+
+  scenario 'and isnt logged in' do
+    visit new_car_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit new_car_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end

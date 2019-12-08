@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin view cars' do
   scenario 'successfully' do
+    admin_login
     visit root_path
     click_on 'Carros'
 
@@ -18,7 +19,8 @@ feature 'Admin view cars' do
     subsidiary = Subsidiary.create!(name: 'Paulista', cnpj: '00.123.456/0001-09', address: 'Rua do meio, 95')
     Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model_id: model.id, mileage: 100000,
                 subsidiary_id: subsidiary.id)
-    
+
+    admin_login
     visit cars_path
 
     expect(page).to have_css('td', text: 'Fit')
@@ -30,9 +32,23 @@ feature 'Admin view cars' do
   end
 
   scenario 'and dont have any registered models' do
+    admin_login
     visit cars_path
 
     expect(page).to have_content('Nenhum carro cadastrado')
     expect(page).to_not have_css('table')
+  end
+
+  scenario 'and isnt logged in' do
+    visit cars_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
+  
+  scenario 'and isnt admin' do
+    user_login
+    visit cars_path
+    
+    expect(page).to have_content('Você não tem essa permissão')
   end
 end
