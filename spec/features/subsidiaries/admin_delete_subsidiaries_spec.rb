@@ -35,14 +35,14 @@ feature 'Admin deleted subsidiary' do
   end
 
   scenario 'and isnt logged in' do
-    visit new_manufacturer_path
+    visit subsidiaries_path
 
     expect(current_path).to eq new_user_session_path
   end
 
   scenario 'and isnt admin' do
     user_login
-    visit new_manufacturer_path
+    visit subsidiaries_path
     
     expect(page).to have_content('Você não tem essa permissão')
   end

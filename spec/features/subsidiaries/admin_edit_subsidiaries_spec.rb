@@ -22,14 +22,16 @@ feature 'Admin edit subsidiary' do
   end
 
   scenario 'and isnt logged in' do
-    visit new_manufacturer_path
+    subsidiary = Subsidiary.create!(name: 'Coqueiro', cnpj: '00.000.000/0000-00', address: 'Rua que desce, 55')
+    visit edit_subsidiary_path(subsidiary)
 
     expect(current_path).to eq new_user_session_path
   end
 
   scenario 'and isnt admin' do
+    subsidiary = Subsidiary.create!(name: 'Coqueiro', cnpj: '00.000.000/0000-00', address: 'Rua que desce, 55')
     user_login
-    visit new_manufacturer_path
+    visit edit_subsidiary_path(subsidiary)
     
     expect(page).to have_content('Você não tem essa permissão')
   end
