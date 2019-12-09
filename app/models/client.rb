@@ -5,6 +5,6 @@ class Client < ApplicationRecord
   validates :document, uniqueness: { message: 'CPF já registrado' }
 
   def uniq_name
-    self.name + ' (' + self.document + ')'
+    name + ' (' + document + ')'
   end
 end

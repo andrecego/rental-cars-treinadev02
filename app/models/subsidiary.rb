@@ -3,5 +3,4 @@ class Subsidiary < ApplicationRecord
                             message: 'CNPJ inválido, formato: xx.xxx.xxx/xxxx-xx'}
   validates :cnpj, uniqueness: { message: 'CNPJ já cadastrado' }
   has_many :cars, dependent: :restrict_with_error
-  # { message: 'Essa filial não pode ser deletada pois possue carros vinculados'}
 end

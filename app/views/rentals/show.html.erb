@@ -3,9 +3,9 @@
   <dt>Nome do cliente:</dt>
   <dd><%= @rental.client.name %></dd>
   <dt>Ínicio: </dt>
-  <dd><%= @rental.start_date %></dd>
+  <dd><%= @rental.start_date.strftime('%d/%m/%Y') %></dd>
   <dt>Final: </dt>
-  <dd><%= @rental.end_date %></dd>
+  <dd><%= @rental.end_date.strftime('%d/%m/%Y') %></dd>
   <dt>Categoria: </dt>
   <dd><%= @rental.car_category.name %></dd>
 </dl>

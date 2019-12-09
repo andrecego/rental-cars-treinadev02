@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :car_categories
   resources :clients
   resources :car_models
-  resources :rentals
+  resources :rentals do
+    get 'search', on: :collection
+  end
   resources :cars, only:[:index, :new, :create, :show]  
 end

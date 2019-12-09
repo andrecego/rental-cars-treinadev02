@@ -1,11 +1,17 @@
 <ul style="display:inline-block">
-  <li><%= link_to 'Fabricantes',  manufacturers_path %></li>
-  <li><%= link_to 'Filiais', subsidiaries_path %></li>
-  <li><%= link_to 'Categorias', car_categories_path %></li>
-  <li><%= link_to 'Clientes', clients_path %></li>
-  <li><%= link_to 'Modelos de carro', car_models_path %></li>
-  <li><%= link_to 'Locação', rentals_path %></li>
-  <li><%= link_to 'Carros', cars_path %></li>
+  <li><%= link_to  'Home', root_path %></li>
+  <% if user_signed_in? %>
+    <li><%= link_to 'Clientes', clients_path %></li>
+    <li><%= link_to 'Locação', rentals_path %></li>
+    <% if current_user.admin? %>    
+      <li><%= link_to 'Fabricantes',  manufacturers_path %></li>
+      <li><%= link_to 'Filiais', subsidiaries_path %></li>
+      <li><%= link_to 'Categorias', car_categories_path %></li>
+      <li><%= link_to 'Modelos de carro', car_models_path %></li>
+      <li><%= link_to 'Carros', cars_path %></li>
+    <% end %>
+  <% end %>
+
 </ul>
 
 <div class="login">
