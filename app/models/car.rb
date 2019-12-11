@@ -8,4 +8,6 @@ class Car < ApplicationRecord
   validates :license_plate, uniqueness: { message: 'Placa já cadastrada' }
   validates :license_plate, format: { with: /[A-Z]{3}[-]\d{4}/,
                                       message: 'Placa no formato errado' }
+
+  enum status: [:available, :unavailable]
 end

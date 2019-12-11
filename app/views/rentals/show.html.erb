@@ -1,4 +1,6 @@
 <h3>Locaçao para <%= @rental.client.uniq_name %></h3>
+<p>Código de reserva: <%= @rental.reservation_code %></p>
+<p>Status: <%= @rental.status %></p>
 <dl>
   <dt>Nome do cliente:</dt>
   <dd><%= @rental.client.name %></dd>
@@ -8,4 +10,15 @@
   <dd><%= @rental.end_date.strftime('%d/%m/%Y') %></dd>
   <dt>Categoria: </dt>
   <dd><%= @rental.car_category.name %></dd>
-</dl>
+  <% if @rental.in_progress? %>
+    <dt>Carro: </dt>
+    <dd><%= @car.car_model.full_name %></dd>
+  </dl>
+<% else %>
+  <p>Escolha um modelo para o ínicio da locação</p>
+  <%= form_for @rental.car_category, url: {action: :confirm, method: :patch} do |f| %>
+    <%= f.label :car_models, 'Modelo' %>
+    <%= f.collection_select :car_models, @models, :id, :full_name %>
+    <%= f.submit 'Confirmar' %>
+  <% end %>
+<% end %>
