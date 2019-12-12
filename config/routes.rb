@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :car_models
   resources :rentals do
     get 'search', on: :collection
-    patch 'confirm', on: :member
+    put 'confirm', on: :member
   end
   resources :cars, only:[:index, :new, :create, :show]  
 end

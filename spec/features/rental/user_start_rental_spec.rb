@@ -37,5 +37,9 @@ feature 'User start the rental' do
     expect(page).to have_content('Carro: Honda Fit')
     expect(page).to_not have_content('Carro: Honda HRV')
     expect(page).to_not have_content('Efetivar')
+    rental.reload
+    car.reload
+    expect(rental).to be_in_progress
+    expect(car).to_not be_available
   end
 end

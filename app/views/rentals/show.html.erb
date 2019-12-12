@@ -16,7 +16,7 @@
   </dl>
 <% else %>
   <p>Escolha um modelo para o ínicio da locação</p>
-  <%= form_for @rental.car_category, url: {action: :confirm, method: :patch} do |f| %>
+  <%= form_for @rental.car_category, url: confirm_rental_path, method: :put do |f| %>
     <%= f.label :car_models, 'Modelo' %>
     <%= f.collection_select :car_models, @models, :id, :full_name %>
     <%= f.submit 'Confirmar' %>

@@ -4,7 +4,7 @@ class CarModel < ApplicationRecord
   has_many :cars
 
   def free?
-    cars.any?{|car| car.status == 'available'}
+    cars.any?{|car| car.available? }
   end
 
   def full_name

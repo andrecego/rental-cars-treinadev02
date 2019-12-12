@@ -24,7 +24,7 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
-    @car = Car.find(@rental.car_id) if @rental.car_id
+    @car = @rental.car if @rental.car
     @models = @rental.car_category.car_models.select{|model| model.free?}
   end
 
@@ -35,17 +35,16 @@ class RentalsController < ApplicationController
 
   def confirm
     @rental = Rental.find(params[:id])
-    @model = CarModel.find(params.require(:car_category).permit(:car_models)[:car_models])
+    @model = CarModel.find(params[:car_category][:car_models])
     @car = @model.cars.select{|car| car.available?}.first
-    if @rental.save
-      @rental.car_id = @car.id
+    if @rental.create_car_rental(car: @car)
       @car.unavailable!
       @rental.in_progress!
       flash[:notice] = 'Locação efetivada com sucesso'
       redirect_to @rental
     else
       flash[:alert] = 'Algo deu errado'
-      render :start
+      render :show
     end      
   end
 

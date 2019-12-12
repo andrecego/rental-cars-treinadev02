@@ -2,9 +2,15 @@ adicionar botao voltar a todos forms e nos specs
 adicionar testes para logar como usuario padrao em areas de admin
 
 
+NOTAS PESSOAIS
+render @rentals = render 'rental', collection: @rentals
 
+LIKE SQL
+if params[:q].length < 4
+  Model.where('attribute_name like ?', "%#{params[:q]}%")
+else
+  
 
-
-show da locação trocar de agendada para em progresso
-routes -> put 'start' on: :member
-.in_progress! (precisa de enum)
+começa_com%
+%termina_com
+%qualquer_lugar%
