@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User start the rental' do
   scenario 'successfully' do
-    honda = Manufacturer.create!(name: 'Honda')
+      honda = Manufacturer.create!(name: 'Honda')
     category = CarCategory.create!(name: 'A', daily_rate: '100', car_insurance: '50',
                                    third_party_insurance: '30')
     category2 = CarCategory.create!(name: 'C', daily_rate: '150', car_insurance: '110',

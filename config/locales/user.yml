@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    models:
+      user: 'Usuário'
+    attributes:
+      password: 'Senha'

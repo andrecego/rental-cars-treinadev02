@@ -14,3 +14,12 @@ else
 começa_com%
 %termina_com
 %qualquer_lugar%
+
+I18n = Internacionalization
+
+L10n = Localization
+SQL 100.00    2020/10/01  
+R$  100,00    01/10/2020
+US$ 100.00    10/01/2020
+
+I18n
